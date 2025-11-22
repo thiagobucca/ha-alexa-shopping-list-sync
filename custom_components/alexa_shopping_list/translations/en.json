@@ -1,0 +1,64 @@
+{
+  "config": {
+    "step": {
+      "cdp": {
+        "title": "Alexa Shopping List - CDP Setup",
+        "description": "Enter the CDP endpoint URL. The Amazon domain will be detected automatically from your browser. Make sure Chromium is running with the Amazon list page open.",
+        "data": {
+          "cdp_endpoint": "CDP Endpoint URL"
+        },
+        "data_description": {
+          "cdp_endpoint": "URL of the Chrome DevTools Protocol endpoint (default: http://localhost:9222)"
+        }
+      },
+      "test_connection": {
+        "title": "Testing Connection",
+        "description": "Testing connection to Chromium browser...",
+        "data": {},
+        "data_description": {}
+      },
+      "sync_settings": {
+        "title": "Sync Settings",
+        "description": "Configure how often the shopping list should sync between Home Assistant and Alexa.",
+        "data": {
+          "sync_mins": "Sync Interval (minutes)"
+        },
+        "data_description": {
+          "sync_mins": "How often to sync (1-1440 minutes, recommended: 60)"
+        }
+      }
+    },
+    "error": {
+      "invalid_amazon_url": "Invalid Amazon domain. Please enter a valid domain like amazon.com or amazon.co.uk",
+      "invalid_cdp_endpoint": "Invalid CDP endpoint URL. Please enter a valid URL starting with http:// or https://",
+      "cdp_connection_failed": "Could not connect to Chromium via CDP. Please ensure Chromium is running with --remote-debugging-port=9222 and the browser is on the Amazon list page.",
+      "unknown": "An unexpected error occurred. Please try again.",
+      "invalid_sync_mins": "Invalid sync interval. Please enter a number between 1 and 1440.",
+      "sync_mins_too_high": "Sync interval too high. Maximum is 1440 minutes (24 hours)."
+    },
+    "abort": {
+      "already_configured": "This Amazon domain is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Alexa Shopping List Options",
+        "description": "Update sync settings and CDP endpoint for the Alexa Shopping List integration.",
+        "data": {
+          "sync_mins": "Sync Interval (minutes)",
+          "cdp_endpoint": "CDP Endpoint URL"
+        },
+        "data_description": {
+          "sync_mins": "How often to sync (1-1440 minutes)",
+          "cdp_endpoint": "URL of Chrome DevTools Protocol endpoint (http://localhost:9222)"
+        }
+      }
+    },
+    "error": {
+      "invalid_sync_mins": "Invalid sync interval. Please enter a number between 1 and 1440.",
+      "sync_mins_too_high": "Sync interval too high. Maximum is 1440 minutes (24 hours).",
+      "invalid_cdp_endpoint": "Invalid CDP endpoint URL. Please enter a valid URL starting with http:// or https://"
+    }
+  }
+}
