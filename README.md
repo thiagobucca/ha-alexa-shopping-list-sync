@@ -592,42 +592,7 @@ This project is **not affiliated** with Amazon, Alexa, or any of their subsidiar
 
 "Amazon" and "Alexa" are registered trademarks of Amazon.com, Inc.
 
-**Use at your own risk.** The authors are not responsible for any issues arising from the use of this integration.
-
----
-
-## Acknowledgments
-
-**Original Author:** [@madmachinations](https://github.com/madmachinations)
-**v3.0 Refactor:** [@thiagobucca](https://github.com/thiagobucca)
-
-**Special Thanks:**
-- Home Assistant Community
-- Chrome DevTools Protocol Team
-- All contributors and testers
-
----
-
-## Support
-
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/thiagobucca/ha-alexa-shopping-list-sync/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/thiagobucca/ha-alexa-shopping-list-sync/discussions)
-- 📖 **Documentation**: [Setup Guide](CDP_SETUP.md)
-- ⭐ **Star this repo** if it helped you!
-
----
-
-## Roadmap
-
-- [ ] Support for Alexa TODO lists
-- [ ] Unidirectional sync mode (Alexa→HA or HA→Alexa only)
-- [ ] Multiple Amazon account support
-- [ ] Item quantities support
-- [ ] Shopping categories/aisles
-- [ ] Auto-configuration of systemd service
-- [ ] Web-based setup wizard
-
----
+**Use at your own risk.** The author is not responsible for any issues arising from the use of this integration.
 
 **Made with ❤️ for the Home Assistant community**
 
