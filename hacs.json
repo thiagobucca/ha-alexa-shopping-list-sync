@@ -1,5 +1,6 @@
 {
-    "name": "Ha Alexa Shopping List Sync",
-    "content_in_root": false,
-    "domains": ["ha_alexa_shopping_list_sync"]
-  }
+  "name": "Alexa Shopping List",
+  "content_in_root": false,
+  "render_readme": true,
+  "domains": ["alexa_shopping_list"]
+}

@@ -2,7 +2,7 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
 [![License](https://img.shields.io/github/license/thiagobucca/ha-alexa-shopping-list-sync)](LICENSE)
-![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)
 
 This project provides a reliable and lightweight synchronization between the **default Alexa shopping list** (the same list used natively on an Echo Show 15 widget) and Home Assistant.
 
@@ -217,7 +217,6 @@ Save and restart Home Assistant (or reload configuration).
 
 | Parameter | Description | Default | Example |
 |-----------|-------------|---------|---------|
-| **Amazon Domain** | Your Amazon region | `amazon.com` | `amazon.co.uk`, `amazon.de` |
 | **CDP Endpoint** | Chromium remote debugging URL | `http://localhost:9222` | `http://192.168.1.100:9222` |
 | **Sync Interval** | Minutes between automatic syncs | `60` | `30`, `120` |
 
@@ -305,14 +304,6 @@ script:
 - **5-10 minutes**: Testing only (not recommended for production)
 
 > ⚠️ **Warning**: Very short intervals (< 5 minutes) may trigger rate limiting or cause excessive browser activity.
-
-### Changing Amazon Domain
-
-If you need to switch regions (e.g., from `amazon.com` to `amazon.co.uk`):
-
-1. Remove the integration completely
-2. Re-add it with the new domain
-3. Ensure Chromium is logged in to the correct Amazon region
 
 ---
 
@@ -577,26 +568,15 @@ custom_components/alexa_shopping_list/
 
 ## Changelog
 
-### v3.0.0 (2025-11-21) - CDP Architecture Rewrite
-- ✨ **Complete rewrite** using Chrome DevTools Protocol (CDP)
-- ❌ **Removed** Selenium dependency
-- ❌ **Removed** Docker containers architecture
-- ❌ **Removed** cookie management complexity
-- ✅ **Added** direct WebSocket communication via CDP
-- ✅ **Reduced** package size from ~100MB to ~1MB
-- ✅ **Improved** reliability and long-term stability
-- ✅ **Simplified** configuration to 3 steps
-- ✅ **Enhanced** error handling and logging
-- ✅ **Fixed** bidirectional synchronization logic
-
-### v2.0.0 (Archived - Selenium-based)
-- Used Selenium for browser automation
-- Required multi-container Docker setup
-- Cookie-based authentication (unreliable)
-
-### v1.x (Archived - Server/Client)
-- Original server/client architecture
-- Deprecated due to complexity and maintenance burden
+### v0.0.1 (2025-11-21) - Initial Release
+- ✨ **Built with** Chrome DevTools Protocol (CDP)
+- ✅ Direct WebSocket communication with Chromium
+- ✅ Lightweight architecture (~1MB dependencies)
+- ✅ Long-term reliability without Selenium or cookies
+- ✅ Simple 3-step configuration
+- ✅ Bidirectional synchronization
+- ✅ Works with default Alexa shopping list
+- ✅ Compatible with Echo Show 15 widget
 
 ---
 
