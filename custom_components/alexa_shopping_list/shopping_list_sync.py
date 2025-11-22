@@ -239,18 +239,24 @@ class ShoppingListSync:
                 # Remove items from Alexa
                 for item_name, item_id in to_remove:
                     try:
-                        _LOGGER.debug("Removing from Alexa: %s (ID: %s)", item_name, item_id)
+                        _LOGGER.info("Removing from Alexa: %s", item_name)
                         await self.cdp.remove_item(item_id)
                     except Exception as err:
                         _LOGGER.error("Failed to remove item '%s': %s", item_name, err)
                         # Continue with other items
 
+                # Wait for Alexa DOM to update after removals
+                if to_remove:
+                    _LOGGER.debug("Waiting 1s for Alexa to process removals")
+                    await asyncio.sleep(1)
+
                 # Get updated Alexa list
                 refreshed_alexa_items = await self.cdp.get_shopping_list_items()
-                _LOGGER.debug("Refreshed Alexa list has %d items", len(refreshed_alexa_items))
+                _LOGGER.info("Refreshed Alexa list has %d items", len(refreshed_alexa_items))
 
                 # Extract just the names for HA
                 refreshed_alexa_names = [item["name"] for item in refreshed_alexa_items if not item.get("completed", False)]
+                _LOGGER.info("Items to write to HA: %s", refreshed_alexa_names)
 
                 # Update HA list to match Alexa
                 await self._write_ha_shopping_list(refreshed_alexa_names)
@@ -259,12 +265,15 @@ class ShoppingListSync:
                 try:
                     if "shopping_list" in self.hass.data:
                         await self.hass.data["shopping_list"].async_load()
-                        _LOGGER.debug("Reloaded HA shopping list component")
+                        _LOGGER.info("Reloaded HA shopping list component")
                 except Exception as err:
                     _LOGGER.warning("Could not reload shopping list component: %s", err)
 
                 # Calculate new hash to detect changes
                 updated_ha_list = await self._read_ha_shopping_list()
+                _LOGGER.info("HA list after reload has %d items: %s",
+                            len(updated_ha_list),
+                            [item.get("name") for item in updated_ha_list])
                 new_hash = self._calculate_list_hash(updated_ha_list)
                 changed = original_hash != new_hash
 

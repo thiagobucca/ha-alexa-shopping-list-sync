@@ -70,8 +70,14 @@ class AlexaShoppingListSyncSensor(CoordinatorEntity, SensorEntity):
 
         Returns the timestamp of the last successful sync.
         """
+        # Try to get timestamp from coordinator data first
+        if self.coordinator.data and "last_sync" in self.coordinator.data:
+            timestamp = self.coordinator.data["last_sync"]
+            if timestamp and isinstance(timestamp, datetime):
+                return timestamp
+
+        # Fallback to coordinator's last_update_success
         timestamp = self.coordinator.last_update_success
-        # Ensure it's a datetime object, not bool
         if timestamp and isinstance(timestamp, datetime):
             return timestamp
 

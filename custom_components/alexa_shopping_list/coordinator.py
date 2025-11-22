@@ -1,7 +1,7 @@
 """Data update coordinator for Alexa Shopping List integration."""
 from __future__ import annotations
 
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 import logging
 from typing import Any
 
@@ -86,7 +86,7 @@ class AlexaShoppingListCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 self.hass.bus.async_fire("alexa_shopping_list_changed", result)
 
             return {
-                "last_sync": self.last_update_success,
+                "last_sync": datetime.now(timezone.utc),
                 "sync_result": result,
                 "connected": True,
             }
@@ -114,9 +114,9 @@ class AlexaShoppingListCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 if result["changed"]:
                     self.hass.bus.async_fire("alexa_shopping_list_changed", result)
 
-                # Update coordinator data (don't await - it's not always async in all HA versions)
+                # Update coordinator data with current timestamp
                 self.async_set_updated_data({
-                    "last_sync": self.last_update_success,
+                    "last_sync": datetime.now(timezone.utc),
                     "sync_result": result,
                     "connected": True,
                 })
